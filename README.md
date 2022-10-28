@@ -44,10 +44,13 @@ DESCRIPCION DE LAS VISTAS
 PLP - Product List Page
 
 • Pagina donde se visualizará la lista de los productos.
+
 • Esta pagina, se mostrarán todos los elementos que nos devuelve la petición del API
 • Permitirá el filtrado del contenido en función del criterio de busqueda que el usuario
 introduzca
+
 • Al seleccionar un producto, deberá navegar a los detalles del mismo.
+
 • Se mostrarán un maximo de cuatro elementos por fila, y que sea adaptativo segun la
 resolución.
 
@@ -57,8 +60,10 @@ resolución.
 PDP - Product Details Page
 
 • Esta pagina de dividirá en dos columnas:
+
 o En la primera se mostrará el componente de la imagen del producto
 o En la segunda, se mostrará los detalles y las acciones del producto
+
 • Deberá mostrar un link para navegar de vuelta a la lista de productos.
 
 <img width="606" alt="Captura de Pantalla 2022-10-28 a las 13 55 38" src="https://user-images.githubusercontent.com/81261121/198581599-610eb52e-019b-4338-a68f-ddf6ce576c73.png">
@@ -69,22 +74,27 @@ DESCRIPCION DE LOS COMPONENTES
 Cabecera (HEADER)
 
 • El titulo o el icono de la aplicación, actuará como enlace a la vista principal.
+
 • Se mostrará un breadcrumbs, mostrando la pagina donde se encuentra el usuario asi
 como un link para su navegación.
+
 • En la parte derecha de la cabecerá, se mostrará el numero de items que se hayan
 añadido al carrito.
 
 Barra de Busqueda (SEARCH)
 
 • Se mostrará un input al usuario, el permitirá la introdución de una cadena de texto.
+
 • El usuario deberá filtra los productos en función del texto introducido, y se comparará
 con el Marca y el Modelo de los productos.
+
 • El filtrado, será en tiempo real, es decir, se lanzará una busqueda cada vez que el
 usuario cambie los criterios de busqueda.
 
 Elemento lista (ITEM)
 
 • Se mostrará la siguiente información del producto:
+
 o Imagen
 o Marca
 o Modelo
@@ -98,6 +108,7 @@ Descripción Producto (DESCRIPTION)
 
 • Se mostrará los detalles asociados a los productos. Se mostrarán al menos los siguientes
 atributos:
+
 o Marca
 o Modelo
 o Precio
@@ -115,16 +126,22 @@ Acciones Producto (ACTIONS)
 • Se mostrará dos tipos de selectores, donde el usuario, podra seleccionar el tipo del
 producto que quiere añadir a la cesta. Se mostrarán los selectores de opciones para las
 siguiente atributos:
+
 o Almacenamiento
 o Colores
+
 • Aunque solo exista una opción, se mostrará el selector con la información. Para este
 caso de uso, deberá estar seleccionado por defecto.
+
 • Se visualizará un boton de Añadir, donde el usuario, un vez seleccionada las opciones,
 añadirá el producto a la cesta.
+
 • Al añadir un producto mediante el API, se requiere mandar la siguiente información:
+
 o El identificador del producto
 o El codigo de color seleccionado
 o El codigo de la capacidad de almacenamiento seleccionada
+
 • La petición de añadir, devuelve en la respuesta, el numero de productos que hay en la
 cesta. Este valor deberá mostrarse en la cabecera de la aplicación en cualquier vista
 de la misma. Para ello se requiere persistir el dato.
