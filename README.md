@@ -153,6 +153,7 @@ id: 0002,
 ...
 }
 ]
+
 • Obtener el Detalle de producto
 Path
 GET /api/product/:id
@@ -161,6 +162,7 @@ Response
 id: 0001,
 ...
 }
+
 • Añadir producto a la cesta
 Path
 POST /api/cart
