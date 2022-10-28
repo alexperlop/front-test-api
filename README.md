@@ -61,7 +61,7 @@ o En la primera se mostrará el componente de la imagen del producto
 o En la segunda, se mostrará los detalles y las acciones del producto
 • Deberá mostrar un link para navegar de vuelta a la lista de productos.
 
-<img width="608" alt="Captura de Pantalla 2022-10-28 a las 13 53 20" src="https://user-images.githubusercontent.com/81261121/198581041-81b93f53-1815-4bd9-a5bb-f9233fab43c0.png">
+<img width="606" alt="Captura de Pantalla 2022-10-28 a las 13 55 38" src="https://user-images.githubusercontent.com/81261121/198581599-610eb52e-019b-4338-a68f-ddf6ce576c73.png">
 
 
 DESCRIPCION DE LOS COMPONENTES
