@@ -1,0 +1,45 @@
+.feapi-nav__container{
+    background-color: #333333;
+    margin: 0;
+    padding: 0;
+    max-height: 85px;
+    display: flex;
+    align-items: center;
+}
+.feapi-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+.feapi-header figure{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.feapi-header figure img{
+    width: auto;
+    max-height: 85px;
+}
+.feapi-header figure h1{
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 576px) {
+    .feapi-nav__container{
+        max-height:none;
+    }
+    .feapi-header{
+        flex-direction: column;
+        padding: 25px 0;
+    }
+    .feapi-header figure{
+        flex-direction: row;
+    }
+}
