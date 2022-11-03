@@ -12,7 +12,7 @@ const Header = (props) => {
                 <img src={logo} alt="logo" />
                 <h1>Front Api Test</h1>
             </figure>
-            <HeaderCartBtn text={HEADER_BTN_TITLE} number="6" />
+            <HeaderCartBtn text={HEADER_BTN_TITLE} number="6" onClick={props.onShowCart} />
         </header>
     </nav>)
 }
