@@ -1,0 +1,31 @@
+.feapi-detail__img figure, .feapi-detail__info {
+    width: 50%;
+}
+.feapi-detail__img img {
+    width: 50%;
+    padding-bottom: 0;
+}
+
+.feapi-detail__img {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.feapi-detail__info ul {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 576px) {
+    .feapi-detail__img , .row{
+        display: flex;
+        flex-direction: column;
+    }
+    .feapi-detail__img img {
+        padding-bottom: 50px;
+    }
+    .feapi-detail__img figure{
+        width: 100%;
+    }
+}

@@ -8,6 +8,8 @@ const CartItem = (props) => {
             <div>
                 <h2>{props.name}</h2>
                 <div className='cart-items__summary'>
+                    <span className='cart-items__price'>{props.color}</span>
+                    <span className='cart-items__price'>{props.memory}</span>
                     <span className='cart-items__price'>{price}</span>
                     <span className='cart-items__amount'>x {props.amount}</span>
                 </div>

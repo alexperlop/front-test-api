@@ -12,13 +12,14 @@
 .feapi-item span{
     padding-bottom: 20px;
 }
-.feapi-item figure{
+.feapi-item a , figure {
+    text-decoration: none;
+    color: black;
     border-radius: 5px;
     margin: 0;
-    padding: 0;
+    padding: 15px 0 0 0;
     width: 100%;
     text-align: center;
-    padding-top: 15px;
 }
 .feapi-item figure img{
     border-radius: 5px;
@@ -30,7 +31,7 @@
 }
 @media (max-width: 576px) {
     .feapi-item{
-        max-width: 100%;
+        width: 100%;
         margin-bottom: 50px;
     }
 }

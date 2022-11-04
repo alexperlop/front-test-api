@@ -13,7 +13,7 @@ const AddProducts = (props) => {
             setAmountIsValid(false)
             return;
         }
-        props.onAddToCart(enteredAmountNumber)
+        props.onAddToCart(enteredAmountNumber, event.target.color.value, event.target.memory.value)
     }
     const errorMessage = <p>Please entered a valid amount</p>;
     const inputConfig = {
@@ -21,13 +21,28 @@ const AddProducts = (props) => {
         type: 'number',
         min: 1,
         step: 1,
-        defaultValue: 1
+        defaultValue: 1,
+        content: 'Amount: '
     }
     return <form className='feapi-form' onSubmit={submitHandler}>
-        <Input ref={amountInputRef} label='Amount' input={inputConfig} />
+        <div className='feapi-form__group'>
+            <label>Memory:</label>
+            <select name='memory' id="memory">
+                {props.memory.map(item => <option value={item}>{item}</option>)}
+            </select>
+        </div>
+        <div className='feapi-form__group'>
+            <label>Color:</label>
+            <select name='color' id="color">
+                {props.colors.map(item => <option value={item}>{item}</option>)}
+            </select>
+        </div>
+        <div className='feapi-form__add'>
+            <Input ref={amountInputRef} label='Amount' input={inputConfig} />
+        </div>
         <button type='submit'>Add</button>
         {!amountIsValid && errorMessage}
-    </form>
+    </form >
 }
 
 export default AddProducts

@@ -6,6 +6,9 @@
     display: flex;
     align-items: center;
 }
+.feapi-header a{
+    text-decoration: none;
+}
 .feapi-header{
     width: 100%;
     display: flex;

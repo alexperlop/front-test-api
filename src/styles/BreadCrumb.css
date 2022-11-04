@@ -1,0 +1,18 @@
+.feapi-breadcrumb{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5C5C5C;
+}
+.feapi-breadcrumb__link{
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.feapi-breadcrumb a:hover, .active{
+    text-decoration: underline;
+    color: white;
+}

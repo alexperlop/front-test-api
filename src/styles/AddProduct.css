@@ -1,11 +1,13 @@
 .feapi-form {
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    padding: 30px 0 30px 0;
 }
-
+.feapi-form__add, .feapi-form__group{
+    width: 100%;
+    margin: 10px;
+}
+.feapi-form label{
+    margin-right: 20px;
+}
 .feapi-form button {
     font: inherit;
     cursor: pointer;
@@ -17,7 +19,8 @@
     border-radius: 20px;
     font-weight: bold;
 }
-.feapi-form input{
+.feapi-form input, select {
+    width: 80px;
     border: 1px solid grey;
     border-radius: 5px;
     text-align: center;

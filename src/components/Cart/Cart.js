@@ -26,6 +26,8 @@ const Cart = (props) => {
                     name={el.name}
                     amount={el.amount}
                     price={el.price}
+                    color={el.color}
+                    memory={el.internalMemory}
                     onRemove={cartItemRemoveHandler.bind(null, el.id)}
                     onAdd={cartItemAddHandler.bind(null, el)} />)
             }
