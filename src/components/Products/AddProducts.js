@@ -24,8 +24,18 @@ const AddProducts = (props) => {
         defaultValue: 1
     }
     return <form className='feapi-form' onSubmit={submitHandler}>
-        <Input ref={amountInputRef} label='Amount' input={inputConfig} />
-        <button type='submit'>Add</button>
+        <div className='feapi-form__group'>
+            <select name='memory' id="memory">
+                {props.memory.map(item => <options value="item">{item}</options>)}
+            </select>
+            <select name='color' id="color">
+                {props.color.map(item => <options value="item">{item}</options>)}
+            </select>
+        </div>
+        <div className='feapi-form__group'>
+            <Input ref={amountInputRef} label='Amount' input={inputConfig} />
+            <button type='submit'>Add</button>
+        </div>
         {!amountIsValid && errorMessage}
     </form>
 }

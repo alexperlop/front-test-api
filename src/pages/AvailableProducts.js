@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "../../styles/AvailableProducts.css"
-import Product from "./Product";
+import "../styles/AvailableProducts.css"
+import Product from "../components/Products/Product";
 
 const AvailableProducts = (props) => {
     const [products, setProducts] = useState([])
@@ -11,7 +11,7 @@ const AvailableProducts = (props) => {
         const fetchData = async () => {
             const response = await fetch('https://front-test-api.herokuapp.com/api/product');
             if (!response.ok) {
-                throw new Error('Somenthing went wrong!')
+                throw new Error('Something went wrong!')
             }
             const responseData = await response.json();
 

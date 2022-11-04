@@ -1,11 +1,12 @@
-import Header from "./components/Layout/Header"
-
-import "../src/styles/App.css"
-import Main from "./components/Layout/Main"
+import { Route, Switch } from 'react-router-dom'
 import { useState } from "react"
-import AvailableProducts from "./components/Products/AvailableProducts"
+import Header from "./components/Layout/Header"
+import Main from "./components/Layout/Main"
+import AvailableProducts from "./pages/AvailableProducts"
 import Cart from "./components/Cart/Cart"
 import CartProvider from "./store/CartProvider"
+import DetailProduct from './pages/DetailProduct'
+import "../src/styles/App.css"
 
 const App = () => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -20,7 +21,14 @@ const App = () => {
       {cartIsShown && <Cart onHideCart={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <Main>
-        <AvailableProducts />
+        <Switch>
+          <Route path='/home'>
+            <AvailableProducts />
+          </Route>
+          <Route path='/products/:productId'>
+            <DetailProduct />
+          </Route>
+        </Switch>
       </Main>
     </CartProvider>
   )

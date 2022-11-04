@@ -2,8 +2,12 @@
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+}
+.feapi-form__group{
+    margin: 40px 0 0 0 ;
+}
+.feapi-form__group label, input{
+    margin-right: 20px;
 }
 
 .feapi-form button {
@@ -17,11 +21,15 @@
     border-radius: 20px;
     font-weight: bold;
 }
-.feapi-form input{
+.feapi-form input, select{
     border: 1px solid grey;
     border-radius: 5px;
     text-align: center;
-    padding: 5px 0px;
+    padding: 0px;
+    width: 80px;
+}
+.feapi-form select{
+ margin-right: 20px;
 }
 
 .feapi-form button:hover,

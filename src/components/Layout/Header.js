@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import "../../styles/Header.css";
 import logo from '../../assets/img/logo.png'
 import HeaderCartBtn from "./HeaderCartBtn";
@@ -7,11 +8,12 @@ const Header = (props) => {
 
     return (<nav className="feapi-nav__container">
         <header className="feapi-header">
-            {/* TODO route to init */}
-            <figure>
-                <img src={logo} alt="logo" />
-                <h1>Front Api Test</h1>
-            </figure>
+            <Link to='/home'>
+                <figure>
+                    <img src={logo} alt="logo" />
+                    <h1>Front Api Test</h1>
+                </figure>
+            </Link>
             <HeaderCartBtn text={HEADER_BTN_TITLE} number="6" onClick={props.onShowCart} />
         </header>
     </nav>)
