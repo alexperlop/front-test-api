@@ -8,8 +8,7 @@ import '../styles/DetailProduct.css'
 const DetailProduct = (props) => {
     const cartCtx = useContext(CartContext);
     const params = useParams()
-    const [color, setColors] = useState()
-    const [memory, setInternalMemory] = useState()
+    const [options, setOptions] = useState()
     const [img, setImg] = useState()
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -21,7 +20,8 @@ const DetailProduct = (props) => {
             amount: amount,
             price: products[0].price,
             color: colorChosen,
-            internalMemory: internalMemory
+            internalMemory: internalMemory,
+            option: options
         })
     }
 
@@ -47,9 +47,7 @@ const DetailProduct = (props) => {
                 weight: responseData.weight,
 
             })
-
-            setColors(responseData.colors)
-            setInternalMemory(responseData.internalMemory)
+            setOptions(responseData.options)
             setImg(responseData.imgUrl)
             setProducts(loadedProduct)
             setIsLoading(false)
@@ -88,7 +86,7 @@ const DetailProduct = (props) => {
             <ul>
                 <ProductDetail product={products} />
             </ul>
-            <AddProducts memory={memory} colors={color} onAddToCart={addToCartHandler} />
+            <AddProducts option={options} onAddToCart={addToCartHandler} />
         </div>
     </div >
 }

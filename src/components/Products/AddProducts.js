@@ -3,6 +3,8 @@ import Input from '../UI/Input'
 import { useRef, useState } from 'react'
 
 const AddProducts = (props) => {
+    const OPTIONS_COLOR = 'colors';
+    const OPTIONS_MEMORY = 'storages'
     const [amountIsValid, setAmountIsValid] = useState(true);
     const amountInputRef = useRef()
     const submitHandler = (event) => {
@@ -28,13 +30,13 @@ const AddProducts = (props) => {
         <div className='feapi-form__group'>
             <label>Memory:</label>
             <select name='memory' id="memory">
-                {props.memory.map(item => <option value={item}>{item}</option>)}
+                {props.option[OPTIONS_MEMORY].map(item => <option value={item.name}>{item.name}</option>)}
             </select>
         </div>
         <div className='feapi-form__group'>
             <label>Color:</label>
             <select name='color' id="color">
-                {props.colors.map(item => <option value={item}>{item}</option>)}
+                {props.option[OPTIONS_COLOR].map(item => <option value={item.name}>{item.name}</option>)}
             </select>
         </div>
         <div className='feapi-form__add'>
