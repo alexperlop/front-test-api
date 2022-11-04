@@ -3,6 +3,7 @@ import Input from '../UI/Input'
 import { useRef, useState } from 'react'
 
 const AddProducts = (props) => {
+    console.log("🚀 ~ file: Addproducts.js ~ line 6 ~ AddProducts ~ props", props)
     const [amountIsValid, setAmountIsValid] = useState(true);
     const amountInputRef = useRef()
     const submitHandler = (event) => {
@@ -26,10 +27,10 @@ const AddProducts = (props) => {
     return <form className='feapi-form' onSubmit={submitHandler}>
         <div className='feapi-form__group'>
             <select name='memory' id="memory">
-                {props.memory.map(item => <options value="item">{item}</options>)}
+                {props.memory.map(item => <option value={item}>{item}</option>)}
             </select>
             <select name='color' id="color">
-                {props.color.map(item => <options value="item">{item}</options>)}
+                {props.colors.map(item => <option value={item}>{item}</option>)}
             </select>
         </div>
         <div className='feapi-form__group'>
