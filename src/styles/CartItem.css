@@ -38,7 +38,7 @@
   }
 }
 
-.cart-items button {
+.cart-items__actions button {
   font: inherit;
   font-weight: bold;
   font-size: 1.25rem;

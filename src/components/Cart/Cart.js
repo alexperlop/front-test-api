@@ -1,87 +1,139 @@
-
-import { useContext, useState } from 'react';
-import CartContext from '../../store/cart-context'
-import CartItem from './CartItem';
-import Modal from '../UI/Modal';
-import '../../styles/Cart.css'
+import React, { useContext, useState } from "react";
+import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
+import classes from "../../styles/Cart.module.css";
+import CartContext from "../../store/cart-context";
+import Checkout from "./Checkout";
 
 const Cart = (props) => {
-    const cartCtx = useContext(CartContext)
-    const [isSubmitting, setIsSubmiting] = useState(false)
-    const [didSubmit, setDidSubmit] = useState(false)
-    const [httpError, setHttpError] = useState(false)
+    const [isCheckout, setIsCheckout] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [didSubmit, setDidSubmit] = useState(false);
+    const [httpError, setHttpError] = useState(false);
+    const cartCtx = useContext(CartContext);
+
     const totalAmount = `${cartCtx.totalAmount.toFixed(2)}€`;
     const hasItems = cartCtx.items.length > 0;
 
     const cartItemRemoveHandler = (id) => {
-        cartCtx.removeItem(id)
-    }
+        cartCtx.removeItem(id);
+    };
+
     const cartItemAddHandler = (item) => {
-        cartCtx.addItem(item)
-    }
-    const submitOrderHandler = async (event) => {
-        event.preventDefault()
-        let { id, option, color, internalMemory } = cartCtx.items[0]
-        let codeColor, codeMemory;
-        for (const key in option) {
-            option[key].map(el => {
-                if (el.name === color) {
-                    codeColor = el.code
-                }
-                if (el.name === internalMemory) {
-                    codeMemory = el.code
-                }
-            })
-        }
-        setIsSubmiting(true)
-        const response = await fetch('https://front-test-api.herokuapp.com/api/cart', {
-            method: 'POST',
-            body: JSON.stringify({
-                id: parseInt(id),
-                colorCode: codeColor,
-                storageCode: codeMemory
-            })
+        cartCtx.addItem({ ...item, amount: 1 });
+    };
+
+    const orderHandler = () => {
+        setIsCheckout(true);
+    };
+
+    let colour, storage;
+    const { id, option, color, internalMemory } = cartCtx.items[0];
+    for (const key in option) {
+        option[key].map(el => {
+            if (el.name.includes(color)) {
+                colour = el.code
+            }
+            if (el.name.includes(internalMemory)) {
+                storage = el.code
+            }
         })
-        setIsSubmiting(false)
-        setDidSubmit(true)
+    }
+
+    const confirmHandler = async (userData) => {
+        setIsSubmitting(true);
+        const response = await fetch(
+            "https://front-test-api.herokuapp.com/api/cart",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    id: id,
+                    colorCode: colour,
+                    storageCode: storage,
+                }),
+            }
+        );
+        setIsSubmitting(false);
+        setDidSubmit(true);
+
         if (!response.ok) {
             setHttpError(true)
+        } else {
+            // cartCtx.clearCart();
         }
-    }
-    const formContent = <form onSubmit={submitOrderHandler}>
-        <ul className="cart-items">
-            {cartCtx.items.map(el =>
+    };
+
+    const cartItems = (
+        <ul className={classes["cart-items"]}>
+            {cartCtx.items.map((item) => (
                 <CartItem
-                    key={el.id}
-                    id={el.id}
-                    name={el.name}
-                    amount={el.amount}
-                    price={el.price}
-                    color={el.color}
-                    memory={el.internalMemory}
-                    onRemove={cartItemRemoveHandler.bind(null, el.id)}
-                    onAdd={cartItemAddHandler.bind(null, el)} />)
-            }
+                    key={item.id}
+                    name={item.name}
+                    amount={item.amount}
+                    price={item.price}
+                    color={item.color}
+                    memory={item.internalMemory}
+                    onRemove={cartItemRemoveHandler.bind(null, item.id)}
+                    onAdd={cartItemAddHandler.bind(null, item)}
+                />
+            ))}
         </ul>
-        <div className='total'>
-            <span>Total Amount</span>
-            <span>{totalAmount}</span>
-        </div>
-        <div className='actions'>
-            <button className='button--alt' onClick={props.onHideCart}>Close</button>
-            {hasItems && <button className='button' type='submit'>Order</button>}
-        </div>
-    </form>;
-    const isSubmittingModalContent = <p>Sending order data</p>
-    const didSubmitModalContent = <p>Succesfully sent the order</p>
-    const httpErrorMessage = <p>Error in server please try later</p>
+    );
 
-    return <Modal onHideCart={props.onHideCart}>
-        {!isSubmitting && !didSubmit && formContent}
-        {isSubmitting && isSubmittingModalContent}
-        {didSubmit && !httpError && didSubmitModalContent}
-        {didSubmit && httpError && httpErrorMessage}
-    </Modal >
-}
+    const actionsModal = (
+        <div className={classes.actions}>
+            <button className={classes["button--alt"]} onClick={props.onHideCart}>
+                Close
+            </button>
+            {hasItems && (
+                <button className={classes.button} onClick={orderHandler}>
+                    Order
+                </button>
+            )}
+        </div>
+    );
 
-export default Cart
+    const modalContent = (
+        <React.Fragment>
+            {cartItems}
+            <div className={classes.total}>
+                <span>Total Amount</span>
+                <span>{totalAmount}</span>
+            </div>
+            {isCheckout && (
+                <Checkout onConfirm={confirmHandler} onCancel={props.onHideCart} />
+            )}
+            {!isCheckout && actionsModal}
+        </React.Fragment>
+    );
+
+    const submittingContent = <p>Sending order data ...</p>;
+    const submitContent = (
+        <React.Fragment>
+            <p>Succesfully sent the order</p>
+            <div className={classes.actions}>
+                <button className={classes.button} onClick={props.onHideCart}>
+                    Close
+                </button>
+            </div>
+        </React.Fragment>
+    );
+
+    const httpErrorContent = <div className={classes.actions}>
+        <p>We are having some problems, please try again later</p>
+        <button className={classes["button--alt"]} onClick={props.onHideCart}>
+            Close
+        </button>
+    </div>
+
+    return (
+        <Modal onClose={props.onHideCart}>
+            {!didSubmit && !isSubmitting && modalContent}
+            {isSubmitting && submittingContent}
+            {didSubmit && !httpError && submitContent}
+            {didSubmit && httpError && httpErrorContent}
+        </Modal>
+    );
+};
+
+export default Cart;

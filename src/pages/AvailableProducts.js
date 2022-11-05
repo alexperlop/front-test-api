@@ -3,6 +3,7 @@ import "../styles/AvailableProducts.css"
 import Product from "../components/Products/Product";
 
 const AvailableProducts = (props) => {
+    const [searchInput, setSearchInput] = useState([])
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [httpError, setHttpError] = useState()
@@ -36,6 +37,15 @@ const AvailableProducts = (props) => {
         })
     }, [])
 
+    const searchProductHandler = (event) => {
+        const filteredProduct = products.filter(product => product.model.toLowerCase().includes(event.target.value))
+        if (filteredProduct) {
+            setSearchInput(filteredProduct)
+        } else {
+            return
+        }
+    }
+
     if (isLoading) {
         return <div className="feapi-center">
             <h1>Loading</h1>
@@ -54,10 +64,25 @@ const AvailableProducts = (props) => {
         </div>
     }
 
+    const found = searchInput.map(product => {
+        return <Product key={product.id}
+            id={product.id}
+            brand={product.brand}
+            name={product.model}
+            price={product.price}
+            imgUrl={product.imgUrl} />
+    })
+
     return (
         <section className="feapi-section">
+            <input
+                className="feapi-search__input"
+                type="text"
+                placeholder="Search here"
+                onChange={searchProductHandler} />
             <ul className="feapi-list">
-                {products.map(product => {
+                {searchInput.length > 0 && found}
+                {searchInput.length === 0 && products.map(product => {
                     return <Product key={product.id}
                         id={product.id}
                         brand={product.brand}

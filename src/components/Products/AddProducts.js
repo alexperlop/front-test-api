@@ -30,13 +30,13 @@ const AddProducts = (props) => {
         <div className='feapi-form__group'>
             <label>Memory:</label>
             <select name='memory' id="memory">
-                {props.option[OPTIONS_MEMORY].map(item => <option value={item.name}>{item.name}</option>)}
+                {props.option[OPTIONS_MEMORY].map((item, i) => <option key={i} value={item.name}>{item.name}</option>)}
             </select>
         </div>
         <div className='feapi-form__group'>
             <label>Color:</label>
             <select name='color' id="color">
-                {props.option[OPTIONS_COLOR].map(item => <option value={item.name}>{item.name}</option>)}
+                {props.option[OPTIONS_COLOR].map((item, i) => <option key={i} value={item.name}>{item.name}</option>)}
             </select>
         </div>
         <div className='feapi-form__add'>
