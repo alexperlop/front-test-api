@@ -43,6 +43,7 @@
         padding: 25px 0;
     }
     .feapi-header figure{
-        flex-direction: row;
+        flex-direction: column;
+        margin-bottom: 20px;
     }
 }

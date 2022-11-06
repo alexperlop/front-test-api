@@ -28,7 +28,15 @@ const Cart = (props) => {
     };
 
     let colour, storage;
-    const { id, option, color, internalMemory } = cartCtx.items[0];
+    let id, option, color, internalMemory
+
+    if (hasItems) {
+        id = cartCtx.items[0].id
+        option = cartCtx.items[0].option
+        color = cartCtx.items[0].color
+        internalMemory = cartCtx.items[0].internalMemory
+    }
+
     for (const key in option) {
         option[key].map(el => {
             if (el.name.includes(color)) {
@@ -59,7 +67,7 @@ const Cart = (props) => {
         if (!response.ok) {
             setHttpError(true)
         } else {
-            // cartCtx.clearCart();
+            cartCtx.clearCart();
         }
     };
 

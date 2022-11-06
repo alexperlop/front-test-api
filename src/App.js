@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { useState } from "react"
 import Header from "./components/Layout/Header"
 import Main from "./components/Layout/Main"
@@ -24,6 +24,9 @@ const App = () => {
       <BreadCrumb />
       <Main>
         <Switch>
+          <Route path='/' exact>
+            <Redirect to='/home' />
+          </Route>
           <Route path='/home'>
             <AvailableProducts />
           </Route>

@@ -99,4 +99,9 @@
     .feapi-list {
         flex-wrap: wrap;
     }
+    .feapi-search__input{
+        position: absolute;
+        top: 0%;
+        right: 25%;
+    }
 }
